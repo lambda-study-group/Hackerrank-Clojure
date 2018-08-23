@@ -1,6 +1,6 @@
 (defn signedDiagonalDiff [matrix]
   (reduce
-    (fn [sum pair] (+ sum (- (first pair) (last pair))))
+    #(->> %2 (reduce -) (+ %1))
     0
     (let [last-i (dec (count (first matrix)))]
       (map-indexed (fn [i line]
@@ -11,4 +11,3 @@
 (defn diagonalDifference [matrix]
   (let [diff (signedDiagonalDiff matrix)]
     (if (neg? diff) (- diff) diff)))
-
